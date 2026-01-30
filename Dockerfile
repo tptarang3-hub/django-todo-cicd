@@ -1,15 +1,24 @@
-FROM python:3
+FROM python:3.10-slim
 
+# Set working directory
 WORKDIR /data
 
-RUN pip install django==3.2
+# Upgrade pip
+RUN pip install --upgrade pip
 
+# Copy dependency file first (better caching)
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy project files
 COPY . .
 
-RUN python manage.py migrate
-
+# Expose Django port
 EXPOSE 8000
 
-CMD ["python","manage.py","runserver","0.0.0.0:8000"]
+# Run Django server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 
