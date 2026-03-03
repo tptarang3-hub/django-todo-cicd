@@ -26,8 +26,9 @@ SECRET_KEY = '8)810zj@#^2xp=1=2rkozbv8#)gub6m1a^9qf&)d-9&x9*c2a_'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://donxqq1rs68nl.cloudfront.net",
+]
 # Application definition
 
 INSTALLED_APPS = [
